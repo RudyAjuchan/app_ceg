@@ -5,6 +5,18 @@ String mailIcon = "assets/icons/mail.png";
 String keyIcon = "assets/icons/key.png";
 String separatorIcon = "assets/icons/separador.png";
 String googleIcon = "assets/icons/google.png";
+String avatarIcon = "assets/icons/avatar.png";
+
+//iconos para sidebar
+String homeIcon = "assets/icons/Home.png";
+String notificacionIcon = "assets/icons/notificacion.png";
+String calendarioIcon = "assets/icons/calendario.png";
+String justificarIcon = "assets/icons/justificacion.png";
+String asistenciaIcon = "assets/icons/asistencias.png";
+String estadisticaIcon = "assets/icons/estadistica.png";
+String conversarIcon = "assets/icons/conversar.png";
+String ayudaIcon = "assets/icons/ayuda.png";
+String cerrarIcon = "assets/icons/logout.png";
 
 //APP COLORS
 
@@ -19,3 +31,5 @@ const Color kWhiteColor = Colors.white;
 
 String image1 = "assets/images/login_image.png";
 String image2 = "assets/images/logo_ceg2.png";
+String image3 = "assets/images/logo_ceg.png";
+String image4 = "assets/images/pasillo.jpg";

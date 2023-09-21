@@ -1,6 +1,8 @@
 import 'package:asistencia_ceg/consts.dart';
+import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget{
   const LoginPage({Key? key}) : super(key: key);
@@ -95,7 +97,9 @@ class LoginPage extends StatelessWidget{
                               ),
                             ),
                         ),
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.to(Dashboard());
+                      },
                       ),
                       SizedBox(height: size.height * 0.014),
                       Image.asset(separatorIcon),
