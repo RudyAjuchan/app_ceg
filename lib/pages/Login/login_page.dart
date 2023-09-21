@@ -1,5 +1,6 @@
 import 'package:asistencia_ceg/consts.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
+import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,7 +117,15 @@ class LoginPage extends StatelessWidget{
                           ),
                           child: Image.asset(googleIcon),
                         ),
-                      onPressed: (){},
+                      onPressed: () => AuthService().signInwithGoogle().then((user){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const Dashboard();
+                            },
+                          ),
+                        );
+                      }),
                       ),
                   ],
               ),

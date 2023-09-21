@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "367374997086",
+    "project_id": "asistenca-ceg",
+    "storage_bucket": "asistenca-ceg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367374997086:android:0a44096424d5c2446d86cf",
+        "android_client_info": {
+          "package_name": "com.example.asistencia_ceg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367374997086-nsljj4kgqs2162ic3ic3nkq0ieeohm84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.asistencia_ceg",
+            "certificate_hash": "4ee4c3ab58a2f4c5c7d6e66f800eab6fdfdc8b12"
+          }
+        },
+        {
+          "client_id": "367374997086-4v8k5jdg4moqsahfm5djlrbbnaeu2uqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSTKcUKPpKWn7_eoqiKxrLLwfcUKnEPGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367374997086-4v8k5jdg4moqsahfm5djlrbbnaeu2uqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
