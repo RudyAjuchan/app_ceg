@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
         title: 'Centro Educativo Getsemaní',
         theme: ThemeData(fontFamily: "SF-Pro-Text"),
-        home: const SplashView(),
+        home: SplashView(),
       );
     }
 }

@@ -1,11 +1,16 @@
+import 'package:asistencia_ceg/pages/Login/splash_view.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
+import 'package:asistencia_ceg/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:asistencia_ceg/consts.dart';
 import 'package:asistencia_ceg/utils/global.colors.dart';
 import 'package:get/get.dart';
 
 class Navbar extends StatelessWidget {
-  const Navbar({super.key});
+  Navbar({super.key});
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +19,8 @@ class Navbar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-              accountName: const Text('Rudy Ajuchán'),
-              accountEmail: const Text('rudy@gmail.com'),
+              accountName: Text(user.displayName!),
+              accountEmail: Text(user.email!),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(child: Image.asset(avatarIcon)),
               ),
@@ -73,7 +78,15 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(cerrarIcon),
             title: const Text('Cerrar Sesión'),
-            onTap: () => {},
+            onTap: () => AuthService().signOutGoogle().then((res){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SplashView();
+                            },
+                          ),
+                        );
+                      }),
           ),
         ],
       ),
