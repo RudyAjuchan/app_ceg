@@ -27,6 +27,7 @@ class AuthService {
   }
 
   verificar() async{
+    Firebase.initializeApp();
     bool respuesta = await GoogleSignIn().isSignedIn();
     return respuesta ? 'si' : 'no';
   }

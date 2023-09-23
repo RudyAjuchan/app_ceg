@@ -1,12 +1,20 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:asistencia_ceg/consts.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget{
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context){
@@ -46,6 +54,7 @@ class LoginPage extends StatelessWidget{
                       TextField(
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: kInputColor),
+                        controller: emailController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(vertical: 25.0),
                           filled: true,
@@ -65,6 +74,7 @@ class LoginPage extends StatelessWidget{
                         obscureText: true,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: kInputColor),
+                        controller: passwordController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(vertical: 25.0),
                           filled: true,
@@ -99,7 +109,52 @@ class LoginPage extends StatelessWidget{
                             ),
                         ),
                       onPressed: (){
-                        Get.to(Dashboard());
+                        login(emailController.text, passwordController.text).then((res){
+                          if(res!=null){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const Dashboard();
+                                },
+                              ),
+                            );
+                          }else{
+                            if (Platform.isIOS) {
+                              showCupertinoDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: const Text("Información"),
+                                    content: const Text("Usuario o contraseña inválidos"),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        child: const Text("Ok"),
+                                        onPressed: () { Navigator.of(context).pop();},
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text("Información"),
+                                    content: const Text("Usuario o contraseña inválidos"),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text("Ok"),
+                                        onPressed: () {Navigator.of(context).pop();},
+                                      ),
+                                    ],
+                                    elevation: 24,
+                                  );
+                                },
+                              );
+                            }
+                          }
+                        });
                       },
                       ),
                       SizedBox(height: size.height * 0.014),
@@ -134,4 +189,24 @@ class LoginPage extends StatelessWidget{
       ),
     );
   }
+
+  login(email, password) async{
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password
+      );
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+        return false;
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        return false;
+      }
+    }
+  }
+
+  
 }

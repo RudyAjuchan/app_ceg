@@ -16,7 +16,7 @@ const SplashView({ Key? key }) : super(key: key);
     Timer(const Duration(seconds: 2),(){
       AuthService().verificar().then((res){
         if(res=='no'){
-          Get.to(const LoginPage());
+          Get.to(LoginPage());
         }else if(res=='si'){
           Get.to(const Dashboard());
         }
