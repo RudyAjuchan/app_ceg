@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget{
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget{
                         color: kWhiteColor,
                       ),
                       ),
-                      TextField(
+                      /* TextField(
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: kInputColor),
                         controller: emailController,
@@ -69,8 +69,8 @@ class LoginPage extends StatelessWidget{
                             borderRadius: BorderRadius.circular(37)
                           ),
                         ),
-                      ),
-                      TextField(
+                      ), */
+                      /* TextField(
                         obscureText: true,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(color: kInputColor),
@@ -89,8 +89,8 @@ class LoginPage extends StatelessWidget{
                             borderRadius: BorderRadius.circular(37)
                           ),
                         ),
-                      ),
-                      CupertinoButton(
+                      ), */
+                      /* CupertinoButton(
                         padding: EdgeInsets.zero,
                         child: Container(
                           alignment: Alignment.center,
@@ -156,9 +156,9 @@ class LoginPage extends StatelessWidget{
                           }
                         });
                       },
-                      ),
-                      SizedBox(height: size.height * 0.014),
-                      Image.asset(separatorIcon),
+                      ), */
+                      /* SizedBox(height: size.height * 0.014),
+                      Image.asset(separatorIcon), */
                       SizedBox(height: size.height * 0.014),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
@@ -173,13 +173,55 @@ class LoginPage extends StatelessWidget{
                           child: Image.asset(googleIcon),
                         ),
                       onPressed: () => AuthService().signInwithGoogle().then((user){
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const Dashboard();
-                            },
-                          ),
-                        );
+                        final user = FirebaseAuth.instance.currentUser!;
+                        String email = user.email!;
+                        var isValid = email.toLowerCase().endsWith('cegetsemani.edu.gt');
+                        if(isValid){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const Dashboard();
+                              },
+                            ),
+                          );
+                        }else{
+                          /* Si no es correo del Getsemaní */
+                          AuthService().signOutGoogle();
+                          if (Platform.isIOS) {
+                              showCupertinoDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: const Text("Información"),
+                                    content: const Text("El correo ingresado no pertenece al Getsemaní"),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        child: const Text("Ok"),
+                                        onPressed: () { Navigator.of(context).pop();},
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text("Información"),
+                                    content: const Text("El correo ingresado no pertenece al Getsemaní"),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text("Ok"),
+                                        onPressed: () {Navigator.of(context).pop();},
+                                      ),
+                                    ],
+                                    elevation: 24,
+                                  );
+                                },
+                              );
+                            }
+                        }
                       }),
                       ),
                   ],
