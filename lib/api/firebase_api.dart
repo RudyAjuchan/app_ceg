@@ -1,6 +1,5 @@
 import 'package:asistencia_ceg/main.dart';
 import 'package:asistencia_ceg/pages/notificaciones/pantalla_notificacion.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
   Future<void> handleBackgroundMessage(RemoteMessage message) async{
@@ -39,5 +38,14 @@ class FirebaseApi {
     final fCMToken = await _firebaseMessaging.getToken();
     print('Token: $fCMToken');
     initPushNotifications();
+    //FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+    //FirebaseMessaging.onMessage.listen(handleBackgroundMessage);
+  }
+
+  Future<String?> getToken() async {
+    await _firebaseMessaging.requestPermission();
+    final token = await _firebaseMessaging.getToken();
+
+    return token;
   }
 }

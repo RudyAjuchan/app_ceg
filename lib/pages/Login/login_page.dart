@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:asistencia_ceg/api/firebase_api.dart';
 import 'package:asistencia_ceg/consts.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -177,13 +179,19 @@ class LoginPage extends StatelessWidget{
                         String email = user.email!;
                         var isValid = email.toLowerCase().endsWith('cegetsemani.edu.gt');
                         if(isValid){
-                          Navigator.of(context).push(
+                          
+                          FirebaseApi().getToken().then((token){
+                            var url = Uri.parse('https://apiceg.juliojodi.com/apiCEG/token');
+                            final response = http.post(url, body: {'token': token.toString(), 'correo': email});
+                            print(response);
+                            Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
                                 return const Dashboard();
                               },
                             ),
                           );
+                          });
                         }else{
                           /* Si no es correo del Getsemaní */
                           AuthService().signOutGoogle();
