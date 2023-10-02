@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'pages/Login/splash_view.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:asistencia_ceg/api/firebase_api.dart';
+import 'package:asistencia_ceg/pages/notificaciones/pantalla_notificacion.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -20,7 +22,11 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
         title: 'Centro Educativo Getsemaní',
         theme: ThemeData(fontFamily: "SF-Pro-Text"),
-        home: SplashView(),
+        navigatorKey: navigatorKey,
+        home: const SplashView(),
+        routes: {
+          NotificationScreen.route: (context) => const NotificationScreen(),
+        },
       );
     }
 }
