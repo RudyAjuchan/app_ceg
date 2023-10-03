@@ -1,5 +1,6 @@
 import 'package:asistencia_ceg/pages/Login/splash_view.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
+import 'package:asistencia_ceg/pages/general/calendario.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class Navbar extends StatelessWidget {
             leading: Image.asset(homeIcon),
             title: const Text('Inicio'),
             onTap: () => {
-              Get.to(Dashboard()),
+              Get.to(const Dashboard()),
             },
           ),
           ListTile(
@@ -47,7 +48,9 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(calendarioIcon),
             title: const Text('Calendario Escolar'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to(const Calendario()),
+            },
           ),
           ListTile(
             leading: Image.asset(justificarIcon),
