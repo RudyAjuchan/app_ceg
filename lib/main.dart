@@ -4,6 +4,8 @@ import 'pages/Login/splash_view.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:asistencia_ceg/api/firebase_api.dart';
 import 'package:asistencia_ceg/pages/notificaciones/pantalla_notificacion.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 final navigatorKey = GlobalKey<NavigatorState>();
 void main() async{
@@ -19,6 +21,14 @@ class MyApp extends StatelessWidget{
     @override
     Widget build(BuildContext context){
       return GetMaterialApp(
+                localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+            Locale('es'),
+        ],
+        locale: const Locale('es'),
         debugShowCheckedModeBanner: false,
         title: 'Centro Educativo Getsemaní',
         theme: ThemeData(fontFamily: "SF-Pro-Text"),
