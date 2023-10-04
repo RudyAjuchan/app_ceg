@@ -18,7 +18,7 @@ const Calendario({ Key? key }) : super(key: key);
     return Scaffold(
       drawer: Navbar(),
       appBar: AppBar(
-        title: const Text('Inicio'),
+        title: const Text('Calendario escolar'),
         backgroundColor: GlobalColors.colorPrincipal,
         ),
       body: SfCalendar(

@@ -1,6 +1,8 @@
 import 'package:asistencia_ceg/pages/Login/splash_view.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
+import 'package:asistencia_ceg/pages/general/ayuda.dart';
 import 'package:asistencia_ceg/pages/general/calendario.dart';
+import 'package:asistencia_ceg/pages/general/justificar.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,9 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(justificarIcon),
             title: const Text('Justificar Asistencia'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to(const Justificar()),
+            },
           ),
           ListTile(
             leading: Image.asset(asistenciaIcon),
@@ -69,13 +73,15 @@ class Navbar extends StatelessWidget {
           ),
           ListTile(
             leading: Image.asset(conversarIcon),
-            title: const Text('Conversar'),
+            title: const Text('Conversar (próximamente)'),
             onTap: () => {},
           ),
           ListTile(
             leading: Image.asset(ayudaIcon),
             title: const Text('Ayuda'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to(const Ayuda()),
+            },
           ),
           Divider(),
           ListTile(

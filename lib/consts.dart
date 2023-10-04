@@ -17,6 +17,7 @@ String estadisticaIcon = "assets/icons/estadistica.png";
 String conversarIcon = "assets/icons/conversar.png";
 String ayudaIcon = "assets/icons/ayuda.png";
 String cerrarIcon = "assets/icons/logout.png";
+String supportIcon = "assets/icons/support.png";
 
 //APP COLORS
 
