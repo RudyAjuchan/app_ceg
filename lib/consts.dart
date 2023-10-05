@@ -18,6 +18,7 @@ String conversarIcon = "assets/icons/conversar.png";
 String ayudaIcon = "assets/icons/ayuda.png";
 String cerrarIcon = "assets/icons/logout.png";
 String supportIcon = "assets/icons/support.png";
+String appIcon = "assets/icons/app.png";
 
 //APP COLORS
 
@@ -34,3 +35,4 @@ String image1 = "assets/images/login_image.png";
 String image2 = "assets/images/logo_ceg2.png";
 String image3 = "assets/images/logo_ceg.png";
 String image4 = "assets/images/pasillo.jpg";
+String image5 = "assets/images/logo_ceg_new.jpg";

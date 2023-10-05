@@ -29,6 +29,7 @@ class Ayuda extends StatelessWidget {
                   const Text(
                     'Por favor ingrese los datos para darle seguimiento a los inconvenientes que tenga',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 20,
@@ -79,6 +80,14 @@ class Ayuda extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text(
+                    'O comuniquese al correo electrónico rajuchan@cegetsemani.edu.gt y a soporte@cegetsemani.edu.gt para reportar algún problema o ayuda que necesite',
+                    style: TextStyle( fontSize: 15),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

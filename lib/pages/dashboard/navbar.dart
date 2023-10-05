@@ -1,14 +1,18 @@
 import 'package:asistencia_ceg/pages/Login/splash_view.dart';
 import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
+import 'package:asistencia_ceg/pages/general/acerca.dart';
 import 'package:asistencia_ceg/pages/general/ayuda.dart';
 import 'package:asistencia_ceg/pages/general/calendario.dart';
 import 'package:asistencia_ceg/pages/general/justificar.dart';
+import 'package:asistencia_ceg/pages/general/reporte.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:asistencia_ceg/consts.dart';
 import 'package:asistencia_ceg/utils/global.colors.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Navbar extends StatelessWidget {
   Navbar({super.key});
@@ -64,7 +68,9 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(asistenciaIcon),
             title: const Text('Reporte Asistencia'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to( Reporte()),
+            },
           ),
           ListTile(
             leading: Image.asset(estadisticaIcon),
@@ -77,13 +83,20 @@ class Navbar extends StatelessWidget {
             onTap: () => {},
           ),
           ListTile(
+            leading: Image.asset(appIcon),
+            title: const Text('Acerca de la aplicación'),
+            onTap: () => {
+              Get.to(const Acerca()),
+            },
+          ),
+          ListTile(
             leading: Image.asset(ayudaIcon),
             title: const Text('Ayuda'),
             onTap: () => {
               Get.to(const Ayuda()),
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
             leading: Image.asset(cerrarIcon),
             title: const Text('Cerrar Sesión'),
@@ -91,7 +104,7 @@ class Navbar extends StatelessWidget {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return SplashView();
+                              return const SplashView();
                             },
                           ),
                         );
