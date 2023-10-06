@@ -15,40 +15,42 @@ const Acerca({ Key? key }) : super(key: key);
         title: const Text('Acerca de la aplicación'),
         backgroundColor: GlobalColors.colorPrincipal,
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 40,),
-          Center(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100.0),
-              child: Image.asset(image5, width: 150,),
-            )
-          ),
-          const SizedBox(height: 20,),
-          const Center(
-            child: Text("CEG App",style: TextStyle(fontSize: 17),),
-          ),
-          const Center(
-            child: Text("1.0.0",style: TextStyle(fontSize: 15, color: Colors.grey),),
-          ),
-          const SizedBox(height: 40,),
-          const Divider(),
-          const ListTile(
-              title: Text("Enviar comentarios"),
-              subtitle: Text("rajuchan@cegetsemani.edu.gt"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 40,),
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100.0),
+                child: Image.asset(image5, width: 150,),
+              )
             ),
-          ListTile(
-              title: const Text("Desarrollador"),
-              subtitle: const Text("Rudy Ajuchán" , style: TextStyle(decoration: TextDecoration.underline)),
-              onTap: () => {_launchUrl()}
+            const SizedBox(height: 20,),
+            const Center(
+              child: Text("CEG App",style: TextStyle(fontSize: 17),),
             ),
-          const ListTile(
-              title: Text("Atribuciones"),
-              subtitle: Text(
-                "Google iconos creados por Freepik - Flaticon \nBotón de inicio iconos creados por Shastry \nLista de verificación iconos creados por Freepik \nCerrar sesión iconos creados por Pixel perfect \nNuevo email iconos creados por Freepik \nNotificación iconos creados por JessHG \nAtención al cliente iconos creados por Freepik \nTodos obtenidos de Flaticon"
+            const Center(
+              child: Text("1.0.0",style: TextStyle(fontSize: 15, color: Colors.grey),),
+            ),
+            const SizedBox(height: 40,),
+            const Divider(),
+            const ListTile(
+                title: Text("Enviar comentarios"),
+                subtitle: Text("rajuchan@cegetsemani.edu.gt"),
               ),
-            ),
-        ],
+            ListTile(
+                title: const Text("Desarrollador"),
+                subtitle: const Text("Rudy Ajuchán" , style: TextStyle(decoration: TextDecoration.underline)),
+                onTap: () => {_launchUrl()}
+              ),
+            const ListTile(
+                title: Text("Atribuciones"),
+                subtitle: Text(
+                  "Google iconos creados por Freepik - Flaticon \nBotón de inicio iconos creados por Shastry \nLista de verificación iconos creados por Freepik \nCerrar sesión iconos creados por Pixel perfect \nNuevo email iconos creados por Freepik \nNotificación iconos creados por JessHG \nAtención al cliente iconos creados por Freepik \nTodos obtenidos de Flaticon"
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

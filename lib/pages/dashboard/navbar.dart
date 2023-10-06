@@ -3,6 +3,7 @@ import 'package:asistencia_ceg/pages/dashboard/dashboard.dart';
 import 'package:asistencia_ceg/pages/general/acerca.dart';
 import 'package:asistencia_ceg/pages/general/ayuda.dart';
 import 'package:asistencia_ceg/pages/general/calendario.dart';
+import 'package:asistencia_ceg/pages/general/estadisticas.dart';
 import 'package:asistencia_ceg/pages/general/justificar.dart';
 import 'package:asistencia_ceg/pages/general/reporte.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
@@ -75,7 +76,9 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(estadisticaIcon),
             title: const Text('Estadisticas'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to( Estadisticas()),
+            },
           ),
           ListTile(
             leading: Image.asset(conversarIcon),
