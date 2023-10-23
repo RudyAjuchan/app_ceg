@@ -52,7 +52,7 @@ class Navbar extends StatelessWidget {
             leading: Image.asset(notificacionIcon),
             title: const Text('Notificaciones'),
             onTap: () => {
-              Get.to(Notificaciones()),
+              Get.to(const Notificaciones()),
             },
           ),
           ListTile(
@@ -66,21 +66,21 @@ class Navbar extends StatelessWidget {
             leading: Image.asset(justificarIcon),
             title: const Text('Justificar Asistencia'),
             onTap: () => {
-              Get.to(const Justificar()),
+              Get.to(Justificar()),
             },
           ),
           ListTile(
             leading: Image.asset(asistenciaIcon),
             title: const Text('Reporte Asistencia'),
             onTap: () => {
-              Get.to( Reporte()),
+              Get.to(const Reporte()),
             },
           ),
           ListTile(
             leading: Image.asset(estadisticaIcon),
             title: const Text('Estadisticas'),
             onTap: () => {
-              Get.to( Estadisticas()),
+              Get.to(const Estadisticas()),
             },
           ),
           ListTile(

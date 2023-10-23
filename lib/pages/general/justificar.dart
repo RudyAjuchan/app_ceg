@@ -1,10 +1,14 @@
 import 'package:asistencia_ceg/pages/dashboard/navbar.dart';
 import 'package:asistencia_ceg/utils/global.colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 
 class Justificar extends StatelessWidget {
-  const Justificar({Key? key}) : super(key: key);
+  Justificar({Key? key}) : super(key: key);
+  final mensajeController = TextEditingController();
+  final telefonoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +35,25 @@ class Justificar extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Card(
+                  Card(
                       child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       maxLines: 8, //or null
-                      decoration: InputDecoration.collapsed(
+                      controller: mensajeController,
+                      decoration: const InputDecoration.collapsed(
                           hintText: "Escriba la justificación"),
                     ),
                   )),
                   const SizedBox(
                     height: 15,
                   ),
-                  const Card(
+                  Card(
                       child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      decoration: InputDecoration.collapsed(
+                      controller: telefonoController,
+                      decoration: const InputDecoration.collapsed(
                           hintText: "Ingrese el número de celular o teléfono"),
                     ),
                   )),
@@ -55,7 +61,6 @@ class Justificar extends StatelessWidget {
                     height: 30,
                   ),
                   CupertinoButton(
-                    onPressed: () {},
                     child: Container(
                       alignment: Alignment.center,
                       width: double.infinity,
@@ -72,6 +77,51 @@ class Justificar extends StatelessWidget {
                         ),
                       ),
                     ),
+                    onPressed: () {
+                      if(mensajeController.text=="" || telefonoController.text==""){
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Información"),
+                              content: const Text("Datos incompletos, la justificación y telefono son obligatorios"),
+                              actions: [
+                                TextButton(
+                                  child: const Text("Ok"),
+                                  onPressed: () {Navigator.of(context).pop();},
+                                ),
+                              ],
+                              elevation: 24,
+                            );
+                          },
+                        );
+                      }else{
+                        final user = FirebaseAuth.instance.currentUser!;
+                        String email = user.email!;
+                        var url = Uri.parse('https://apiceg.juliojodi.com/apiCEG/justificar');
+                        final response = http.post(url, body: {'correo': email, 'telefono': telefonoController.text, 'descripcion': mensajeController.text});
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Información"),
+                              content: const Text("Datos registrados con éxito"),
+                              actions: [
+                                TextButton(
+                                  child: const Text("Ok"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    telefonoController.text="";
+                                    mensajeController.text="";
+                                    },
+                                ),
+                              ],
+                              elevation: 24,
+                            );
+                          },
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
