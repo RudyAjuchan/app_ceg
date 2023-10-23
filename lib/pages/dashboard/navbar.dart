@@ -5,6 +5,7 @@ import 'package:asistencia_ceg/pages/general/ayuda.dart';
 import 'package:asistencia_ceg/pages/general/calendario.dart';
 import 'package:asistencia_ceg/pages/general/estadisticas.dart';
 import 'package:asistencia_ceg/pages/general/justificar.dart';
+import 'package:asistencia_ceg/pages/general/notificaciones.dart';
 import 'package:asistencia_ceg/pages/general/reporte.dart';
 import 'package:asistencia_ceg/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,7 +51,9 @@ class Navbar extends StatelessWidget {
           ListTile(
             leading: Image.asset(notificacionIcon),
             title: const Text('Notificaciones'),
-            onTap: () => {},
+            onTap: () => {
+              Get.to(Notificaciones()),
+            },
           ),
           ListTile(
             leading: Image.asset(calendarioIcon),
